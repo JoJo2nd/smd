@@ -23,7 +23,7 @@ minfs_uint32_t utf8_codepoint(const char* uft8In, minfs_uint16_t* ucOut) {
     }
     return ret;
 }
-#if 0
+#ifdef PLATFORM_WINDOWS
 void utf8_to_uc2(const char* src, minfs_uint16_t* dst, size_t len) {
     len -= sizeof(minfs_uint16_t);   /* save room for null char. */
     while (len >= sizeof(minfs_uint16_t))

@@ -110,11 +110,25 @@ size_t minfs_canonical_path(const char* filepath, char* outpath, size_t buf_size
     size_t rlen = 0;
     wchar_t* mrk, *prevmrk;
     wchar_t* uc2filepath;
-    wchar_t canonical[MAX_PATH+1];
-    UTF8_TO_UC2_STACK(filepath, uc2filepath);
-    while (mrk = wcschr(uc2filepath, '/')) { 
-        *mrk = '\\';
+    wchar_t* canonical;
+    //UTF8_TO_UC2_STACK(filepath, uc2filepath);
+    
+    minfs_uint32_t cdlen = GetCurrentDirectoryW(0, NULL);
+    uc2filepath = alloca((cdlen + strlen(filepath) + 1) * sizeof(wchar_t));
+    if (filepath[1] != ':') {
+      GetCurrentDirectoryW(cdlen, uc2filepath);
+      uc2filepath[cdlen - 1] = '\\';
+    } else {
+      cdlen = 0;
     }
+
+    utf8_to_uc2(filepath, uc2filepath + cdlen, (strlen(filepath) + 1) * sizeof(minfs_uint16_t));
+
+    while (mrk = wcschr(uc2filepath, '/')) {
+      *mrk = '\\';
+    }
+
+    canonical = alloca((cdlen + strlen(filepath) + 1) * sizeof(wchar_t) * 2);
     ret = PathCanonicalizeW(canonical, uc2filepath);
     while (mrk = wcschr(canonical, '\\')) { 
         *mrk = '/';
