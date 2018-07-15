@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/JoJo2nd/minfs.git
+	branch = master
+	commit = 8c134fffcbab322576b53079052dc626588f5b5c
+	parent = bb44fb6b1ac4895bc34f44f169085fd38bb2e38c
+	cmdver = 0.3.1
