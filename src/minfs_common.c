@@ -3,8 +3,8 @@
     Please see the file LICENSE.txt in the repository root directory.
 *********************************************************************/
 
-#include "../minfs.h"
-#include "../minfs_common.h" 
+#include "../include/minfs.h"
+#include "../include/minfs_common.h" 
 #include <stdint.h>
 
 minfs_uint32_t utf8_codepoint(const char* uft8In, minfs_uint16_t* ucOut) {
