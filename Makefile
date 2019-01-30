@@ -9,7 +9,7 @@ dep = $(obj:.o=.d)  # one dependency file for each source
 
 minfs.a: $(obj)
 	@echo Linking $@
-	@$(LDLIB) /OUT:$@ $(LDLIBFLAGS) $^
+	$(LDLIB) /OUT:$@ $(LDLIBFLAGS) $^
 
 all: minfs.a
 
@@ -20,12 +20,12 @@ clean:
 
 .c.o:
 	@echo $<
-	@$(CC) -c $(CFLAGS) $(DEFINES) $< -o $@
+	$(CC) -c $(CFLAGS) $(DEFINES) $< -o $@
 
 -include $(dep)   # include all dep files in the makefile
 
 # rule to generate a dep file by using the C preprocessor
 # (see man cpp for details on the -MM and -MT options)
 %.d: %.c
-	@$(CC) $(CFLAGS) $(DEFINES) $< -MM -MT $(@:.d=.o) >$@
+	$(CC) $(CFLAGS) $(DEFINES) $< -MM -MT $(@:.d=.o) >$@
 
