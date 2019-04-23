@@ -3,8 +3,8 @@
     Please see the file LICENSE.txt in the repository root directory.
 *********************************************************************/
 
-#include "../include/minfs.h"
-#include "../include/minfs_common.h"
+#include "minfs.h"
+#include "minfs_common.h"
 #include <windows.h>
 #include <Shlwapi.h>
 #include <malloc.h>
